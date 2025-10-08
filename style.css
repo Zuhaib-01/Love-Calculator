@@ -2353,14 +2353,30 @@ body.dark-mode .feedback-list-section {
 @keyframes lcToastIn{ from{ opacity:0; transform: translate(-50%, 8px);} to{ opacity:1; transform: translate(-50%, 0);} }
 @keyframes lcToastOut{ to{ opacity:0; transform: translate(-50%, 8px);} }
 /* styles added by dodithakur for social media buttons hover */
-#calcBtn{
-	transform: translateY(0);           
-    transition: transform 0.3s ease;
+#calcBtn {
+    transform: translateY(0);
+    transition: all 0.3s ease;
+    font-weight: bold;
+    background: linear-gradient(90deg, #ff8c00, #ff2e63);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+	font-size:17px;
+	font-weight:bold;
 }
-.primary.NG{
-	transform: translateY(0);           
-    transition: transform 0.3s ease;
+
+#calcBtn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
+
+.primary.NG {
+    transform: translateY(0);
+    transition: all 0.3s ease;
+}
+
 #shareWhatsapp{
 	transform: translateY(0);
 	transition:transform  0.3s ease ;
