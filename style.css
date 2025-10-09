@@ -2542,3 +2542,240 @@ body.dark-mode .feedback-list-section {
                 display: flex;
             }
         }
+
+/* ===========================
+   Share Section at Bottom
+   =========================== */
+.share-section {
+	margin: 4rem auto;
+	max-width: 1200px;
+	padding: 0 2rem;
+}
+
+.share-container {
+	background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	border-radius: 24px;
+	padding: 3rem 2rem;
+	text-align: center;
+	box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+	backdrop-filter: blur(12px);
+}
+
+.share-title {
+	font-size: 2rem;
+	font-weight: 700;
+	margin-bottom: 0.5rem;
+	background: linear-gradient(135deg, var(--accent1), var(--accent2));
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+}
+
+.share-subtitle {
+	color: var(--muted);
+	font-size: 1rem;
+	margin-bottom: 2.5rem;
+}
+
+.social-share-bottom {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
+	flex-wrap: wrap;
+	margin-bottom: 3rem;
+}
+
+.share-btn {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 0.875rem 1.5rem;
+	border-radius: 12px;
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
+	color: white;
+	font-size: 0.95rem;
+	font-weight: 500;
+	cursor: pointer;
+	text-decoration: none;
+	transition: all 0.3s ease;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.share-btn i {
+	font-size: 1.2rem;
+}
+
+.share-btn:hover {
+	transform: translateY(-3px);
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+	border-color: rgba(255, 255, 255, 0.2);
+}
+
+.share-link {
+	background: linear-gradient(135deg, var(--accent1), var(--accent2));
+}
+
+.share-whatsapp:hover {
+	background: linear-gradient(135deg, #25D366, #128C7E);
+}
+
+.share-twitter:hover {
+	background: linear-gradient(135deg, #1DA1F2, #0d8bd9);
+}
+
+.share-facebook:hover {
+	background: linear-gradient(135deg, #4267B2, #365899);
+}
+
+.share-instagram:hover {
+	background: linear-gradient(135deg, #E1306C, #C13584);
+}
+
+.download-options {
+	margin-top: 2.5rem;
+	padding-top: 2.5rem;
+	border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.download-title {
+	font-size: 1.3rem;
+	font-weight: 600;
+	margin-bottom: 1.5rem;
+	color: var(--muted);
+}
+
+.download-buttons {
+	display: flex;
+	justify-content: center;
+	gap: 1rem;
+	flex-wrap: wrap;
+}
+
+.download-btn {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 1rem 2rem;
+	border-radius: 12px;
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+	color: white;
+	font-size: 1rem;
+	font-weight: 500;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.download-btn i {
+	font-size: 1.2rem;
+}
+
+.download-btn:hover {
+	transform: translateY(-3px);
+	box-shadow: 0 8px 24px rgba(255, 46, 99, 0.3);
+	background: linear-gradient(180deg, rgba(255, 122, 122, 0.08), rgba(255, 46, 99, 0.04));
+	border-color: var(--accent1);
+}
+
+/* Panel link styling */
+.panel-link {
+	color: var(--accent1);
+	text-decoration: none;
+	font-weight: 500;
+	transition: all 0.2s ease;
+}
+
+.panel-link:hover {
+	color: var(--accent2);
+	text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+	.share-container {
+		padding: 2rem 1.5rem;
+	}
+	
+	.share-title {
+		font-size: 1.5rem;
+	}
+	
+	.social-share-bottom {
+		gap: 0.75rem;
+	}
+	
+	.share-btn {
+		padding: 0.75rem 1.25rem;
+		font-size: 0.9rem;
+	}
+	
+	.download-btn {
+		padding: 0.875rem 1.5rem;
+		font-size: 0.95rem;
+	}
+}
+
+/* ===========================
+   Light Theme - Share Section
+   =========================== */
+body.light-theme .share-section {
+	color: #1a1a1a;
+}
+
+body.light-theme .share-container {
+	background: linear-gradient(180deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.6));
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+}
+
+body.light-theme .share-title {
+	background: linear-gradient(135deg, #ff7a7a, #ff2e63);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+}
+
+body.light-theme .share-subtitle {
+	color: rgba(0, 0, 0, 0.6);
+}
+
+body.light-theme .share-btn {
+	background: linear-gradient(180deg, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.02));
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	color: #1a1a1a;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+body.light-theme .share-btn:hover {
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+	border-color: rgba(0, 0, 0, 0.2);
+}
+
+body.light-theme .share-link {
+	background: linear-gradient(135deg, #ff7a7a, #ff2e63);
+	color: white;
+}
+
+body.light-theme .download-title {
+	color: rgba(0, 0, 0, 0.7);
+}
+
+body.light-theme .download-btn {
+	background: linear-gradient(180deg, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.01));
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	color: #1a1a1a;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+body.light-theme .download-btn:hover {
+	box-shadow: 0 8px 24px rgba(255, 46, 99, 0.2);
+	background: linear-gradient(180deg, rgba(255, 122, 122, 0.1), rgba(255, 46, 99, 0.05));
+}
+
+body.light-theme .download-options {
+	border-top: 1px solid rgba(0, 0, 0, 0.08);
+}

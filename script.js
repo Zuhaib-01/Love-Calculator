@@ -125,11 +125,6 @@ function typeOracleText(elementId, text, delay = 50) {
     }, delay);
 }
 
-
-/* ============================
-   Numerology Logic
-   ============================ */
-
 function sanitizeName(s) {
 	if (!s) return ''
 	return s.replace(/[^A-Za-z]/g, '').toUpperCase()
@@ -180,9 +175,7 @@ function combineNumbers(num1, num2, supportMaster = true) {
 }
 
 function mapToPercent(combined, num1, num2) {
-	// A tuned mapping/formula for UX:
-	// Base formula: transform combined into an attractive distribution
-	// We treat master numbers with higher base values.
+
 	let base
 	if (combined === 11) base = 95
 	else if (combined === 22) base = 99
@@ -919,6 +912,8 @@ themeToggleBtn.addEventListener('click', toggleTheme)
 /* initialize */
 renderHistory()
 setRing(0)
+// Apply saved theme on load
+applyTheme(currentTheme)
 ;(function init() {
 	try {
 		const savedTheme = localStorage.getItem('theme') || 'dark'
