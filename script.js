@@ -45,7 +45,6 @@ const heading = document.getElementById('heading')
 const description = document.getElementById('description')
 const progressRing = document.querySelector('.ring')
 const confettiToggle = document.getElementById('confettiToggle')
-const soundToggle = document.getElementById('soundToggle')
 const particleCanvas = document.getElementById('particleCanvas')
 const allowJitterEl = document.getElementById('allowJitter')
 const useMasterEl = document.getElementById('useMaster')
@@ -93,7 +92,7 @@ const charCount = document.getElementById('charCount')
 let feedbacks = JSON.parse(localStorage.getItem('lovecalc_feedbacks')) || []
 
 let confettiEnabled = true
-let soundEnabled = false
+let soundEnabled = true
 
 // Setup canvas size
 const ctx = particleCanvas.getContext ? particleCanvas.getContext('2d') : null
@@ -866,12 +865,6 @@ confettiToggle.addEventListener('click', () => {
 	confettiEnabled = !confettiEnabled
 	confettiToggle.classList.toggle('active', confettiEnabled)
 	confettiToggle.textContent = confettiEnabled ? '🎊 Confetti (on)' : '🎊 Confetti (off)'
-})
-
-soundToggle.addEventListener('click', () => {
-	soundEnabled = !soundEnabled
-	soundToggle.classList.toggle('active', soundEnabled)
-	soundToggle.textContent = soundEnabled ? '🔈 Sound (on)' : '🔈 Sound (off)'
 })
 
 resetBtn.addEventListener('click', () => {
