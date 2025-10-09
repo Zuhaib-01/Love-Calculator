@@ -2474,6 +2474,7 @@ body.dark-mode .feedback-list-section {
             border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
             flex-wrap: wrap; 
+			margin-top:-40px;
         }
 
         .logo img {
