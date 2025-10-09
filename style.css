@@ -2219,6 +2219,24 @@ body.light-theme {
 }
 
 /* Dark mode support */
+body {
+	margin: 0;
+	font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+	background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)),
+		radial-gradient(1200px 600px at 10% 10%, rgba(255, 120, 150, 0.3), transparent),
+		radial-gradient(800px 400px at 90% 90%, rgba(255, 60, 140, 0.2), transparent),
+		url('dark-bg.jpeg');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	color: #fff;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
 body.dark-mode .feedback-popup {
 	background: #1a1a2e;
 }
