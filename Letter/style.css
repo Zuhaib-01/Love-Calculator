@@ -1,0 +1,251 @@
+body {
+    font-family: 'VT323', monospace;
+    
+    background-color: #2b1f3b;
+    
+    color: #e0e0e0;
+    
+    padding: 16px;
+}
+
+h1, h2 {
+    font-family: 'Press Start 2P', cursive;
+    
+    color: #ff99cc;
+    
+    text-shadow: 2px 2px #b3668c;
+    
+    -webkit-font-smoothing: none;
+    
+    font-size: 1.8rem;
+}
+
+h2 {
+    font-size: 1.4rem;
+}
+
+
+.pixel-border {
+    border: 2px solid #ff99cc;
+    
+    box-shadow: 4px 4px 0px 0px #b3668c;
+    
+    border-image: url('data:image/svg+xml;utf8,<svg width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="2" height="2" fill="%23ff99cc"/><rect x="4" y="0" width="2" height="2" fill="%23ff99cc"/><rect x="0" y="4" width="2" height="2" fill="%23ff99cc"/><rect x="4" y="4" width="2" height="2" fill="%23ff99cc"/></svg>') 2 stretch;
+    background-color: #4a375e;
+    
+}
+
+
+input[type="text"],textarea {
+    font-family: 'VT323', monospace;
+    background-color: #3f3150;
+    
+    border: 2px solid #8c7ba2;
+    
+    color: #f0f0f0;
+    padding: 8px 12px;
+    box-shadow: 2px 2px 0px 0px #2e243b;
+    
+    -webkit-appearance: none;
+    
+    -moz-appearance: none;
+    appearance: none;
+    outline: none;
+    
+}
+
+input[type="text"]:focus,
+textarea:focus {
+    border-color: #ff99cc;
+    
+    box-shadow: 2px 2px 0px 0px #b3668c;
+    
+}
+
+
+input::placeholder,
+textarea::placeholder {
+    color: #b0a3c2;
+    
+}
+
+
+.love-letter-paper {
+    background-color: #ffe0f0;
+    
+    border: 4px solid #ff66aa;
+    
+    box-shadow: 6px 6px 0px 0px #cc3377;
+    
+    line-height: 1.5;
+    white-space: pre-wrap;
+    min-height: 400px;
+    color: #330033;
+    font-family: 'VT323', monospace;
+    padding: 32px;
+    -webkit-font-smoothing: none;
+    font-size: 1.1rem;
+    position: relative;
+ 
+    overflow: hidden;
+  
+}
+
+.love-letter-paper::before,
+.love-letter-paper::after {
+    content: '❤️';
+    position: absolute;
+    font-size: 2em;
+    opacity: 0.6;
+    animation: pulse 2s infinite alternate;
+}
+
+.love-letter-paper::before {
+    top: 10px;
+    left: 10px;
+    transform: rotate(-15deg);
+}
+
+.love-letter-paper::after {
+    bottom: 10px;
+    right: 10px;
+    transform: rotate(15deg);
+}
+
+
+@keyframes pulse {
+    from {
+        transform: scale(0.9);
+        opacity: 0.6;
+    }
+
+    to {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+}
+
+
+.btn-pixel {
+    font-family: 'Press Start 2P', cursive;
+    background-color: #ff66aa;
+    
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 4px 4px 0px 0px #cc3377;
+    
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.1s ease-in-out;
+    -webkit-font-smoothing: none;
+}
+
+.btn-pixel:hover {
+    background-color: #ff88bb;
+    
+    box-shadow: 2px 2px 0px 0px #cc3377;
+    transform: translate(2px, 2px);
+}
+
+.btn-pixel:active {
+    background-color: #ff4499;
+   
+    box-shadow: 0px 0px 0px 0px #cc3377;
+    transform: translate(4px, 4px);
+}
+
+.btn-green {
+    background-color: #4CAF50;
+    box-shadow: 4px 4px 0px 0px #2e7d32;
+}
+
+.btn-green:hover {
+    background-color: #66BB6A;
+    box-shadow: 2px 2px 0px 0px #2e7d32;
+}
+
+.btn-green:active {
+    background-color: #388E3C;
+    box-shadow: 0px 0px 0px 0px #2e7d32;
+}
+
+.btn-blue {
+    background-color: #2196F3;
+    box-shadow: 4px 4px 0px 0px #1565c0;
+}
+
+.btn-blue:hover {
+    background-color: #64B5F6;
+    box-shadow: 2px 2px 0px 0px #1565c0;
+}
+
+.btn-blue:active {
+    background-color: #1976D2;
+    box-shadow: 0px 0px 0px 0px #1565c0;
+}
+
+
+.message-box {
+    font-family: 'VT323', monospace;
+    border: 2px solid;
+    box-shadow: 2px 2px 0px 0px;
+}
+
+.message-box.success {
+    background-color: #d4edda;
+    border-color: #28a745;
+    color: #155724;
+}
+
+.message-box.error {
+    background-color: #f8d7da;
+    border-color: #dc3545;
+    color: #721c24;
+}
+
+.message-box.info {
+    background-color: #d1ecf1;
+    border-color: #17a2b8;
+    color: #0c5460;
+}
+
+
+.printable-letter-area {
+    padding: 32px;
+    background-color: #ffe0f0;
+    border: 4px solid #ff66aa;
+    box-shadow: none;
+    color: #330033;
+    font-family: 'VT323', monospace;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    font-size: 1.1rem;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+    z-index: 10;
+}
+
+.printable-letter-area .heart-decoration {
+    position: absolute;
+    font-size: 2em;
+    opacity: 0.6;
+    animation: none;
+    z-index: -1;
+}
+
+.printable-letter-area .heart-top-left {
+    top: 10px;
+    left: 10px;
+    transform: rotate(-15deg);
+}
+
+.printable-letter-area .heart-bottom-right {
+    bottom: 10px;
+    right: 10px;
+    transform: rotate(15deg);
+}
+
