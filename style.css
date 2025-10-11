@@ -2797,3 +2797,38 @@ body.light-theme .download-btn:hover {
 body.light-theme .download-options {
 	border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
+ .footer-content p:first-child {
+    margin-bottom: 30px; /* space between paragraph and buttons */
+  }
+
+  .footer-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 20px; /* space between buttons and copyright */
+  }
+
+  .footer-buttons button {
+    background-color: #fff;
+    color: #024082;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+    transition: all 0.3s ease;
+  }
+
+  .footer-buttons button:hover {
+    background-color: #ffe6e6;
+    color: #024082;
+    transform: translateY(-2px);
+  }
+
+  .footer-copy {
+    font-size: 14px;
+    color: #ddd;
+    margin-top: 10px;
+  }
