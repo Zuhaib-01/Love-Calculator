@@ -679,6 +679,19 @@ function calculateLove() {
 		tip: romanticTip,
 		t: Date.now(),
 	})
+
+	const resultSection = document.querySelector(".result-area");
+    const shareSection = document.querySelector(".social-share");
+
+    if (shareSection && resultSection) {
+       const yOffset = shareSection.offsetHeight + 50;
+       window.scrollTo({
+        	top: resultSection.offsetTop + yOffset,
+        	behavior: "smooth",
+    });
+  }
+
+
 }
 
 function animateRingTo(targetPercent) {
