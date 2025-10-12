@@ -2726,15 +2726,15 @@ body.dark-mode .feedback-list-section {
 
 /* Panel link styling */
 .panel-link {
-	color: var(--accent1);
+	display: inline-block;
 	text-decoration: none;
 	font-weight: 500;
-	transition: all 0.2s ease;
+	transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .panel-link:hover {
-	color: var(--accent2);
-	text-decoration: underline;
+	color: var(--accent3);
+	transform: scale(1.05);
 }
 
 /* Responsive */
