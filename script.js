@@ -94,19 +94,43 @@ let feedbacks = JSON.parse(localStorage.getItem('lovecalc_feedbacks')) || []
 let confettiEnabled = true
 let soundEnabled = true
 
-// Setup canvas size
+// Setup canvas size with performance optimization
 const ctx = particleCanvas.getContext ? particleCanvas.getContext('2d') : null
+
+// Performance optimization: limit canvas size to reasonable dimensions
+const MAX_CANVAS_WIDTH = 1920
+const MAX_CANVAS_HEIGHT = 1080
+
 function resizeCanvas() {
-	particleCanvas.width = window.innerWidth
-	particleCanvas.height = window.innerHeight
+	const width = Math.min(window.innerWidth, MAX_CANVAS_WIDTH)
+	const height = Math.min(window.innerHeight, MAX_CANVAS_HEIGHT)
+	
+	// Only resize if dimensions actually changed to avoid unnecessary operations
+	if (particleCanvas.width !== width || particleCanvas.height !== height) {
+		particleCanvas.width = width
+		particleCanvas.height = height
+		
+		// Track resize count for performance monitoring
+		if (typeof performanceMetrics !== 'undefined') {
+			performanceMetrics.canvasResizeCount++
+		}
+	}
 }
+
 resizeCanvas()
-window.addEventListener('resize', resizeCanvas)
+
+// Throttle resize events for better performance
+let resizeTimeout
+window.addEventListener('resize', () => {
+	if (resizeTimeout) clearTimeout(resizeTimeout)
+	resizeTimeout = setTimeout(resizeCanvas, 100)
+})
 
 let oracleInterval; 
 
 function typeOracleText(elementId, text, delay = 50) {
     const element = document.getElementById(elementId);
+    if (!element) return // Performance safety check
 
     if (oracleInterval) clearInterval(oracleInterval); // stop any running animation
     element.textContent = '';
@@ -120,10 +144,25 @@ function typeOracleText(elementId, text, delay = 50) {
             i++;
         } else {
             clearInterval(oracleInterval);
+            oracleInterval = null; // Performance: clear reference
             element.classList.remove('oracle-text');
         }
     }, delay);
 }
+
+// Performance optimization: cleanup oracle interval on page unload
+window.addEventListener('beforeunload', () => {
+    if (oracleInterval) {
+        clearInterval(oracleInterval);
+        oracleInterval = null;
+    }
+    
+    // Cleanup resize timeout
+    if (resizeTimeout) {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = null;
+    }
+});
 
 function sanitizeName(s) {
 	if (!s) return ''
@@ -400,6 +439,9 @@ class Particle {
 		this.shape = shape
 		this.angle = Math.random() * Math.PI * 2
 		this.spin = Math.random() * 0.2 - 0.1
+		// Performance optimization: pre-calculate some values
+		this.halfSize = this.size / 2
+		this.sizeRect = this.size * 0.6
 	}
 	update(dt) {
 		this.x += this.vx * dt
@@ -409,13 +451,17 @@ class Particle {
 		this.angle += this.spin * dt
 	}
 	draw(ctx) {
+		// Performance optimization: skip drawing very transparent particles
 		const alpha = Math.max(0, this.life / this.initialLife)
+		if (alpha < 0.05) return
+		
 		ctx.save()
 		ctx.globalAlpha = alpha
 		ctx.translate(this.x, this.y)
 		ctx.rotate(this.angle)
+		
 		if (this.shape === 'heart') {
-			// draw simple heart
+			// draw simple heart - using pre-calculated size values
 			const s = this.size
 			ctx.beginPath()
 			ctx.moveTo(0, s * 0.35)
@@ -424,16 +470,23 @@ class Particle {
 			ctx.fillStyle = this.color
 			ctx.fill()
 		} else {
-			// confetti rectangle
+			// confetti rectangle - using pre-calculated values
 			ctx.fillStyle = this.color
-			ctx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size * 0.6)
+			ctx.fillRect(-this.halfSize, -this.halfSize, this.size, this.sizeRect)
 		}
 		ctx.restore()
 	}
 }
 
 function spawnBurst(x, y, count = 40, heartChance = 0.25) {
-	for (let i = 0; i < count; i++) {
+	// Performance optimization: limit particle count based on device capability
+	const maxParticles = 200 // Prevent too many particles at once
+	const availableSlots = maxParticles - particles.length
+	const actualCount = Math.min(count, availableSlots)
+	
+	if (actualCount <= 0) return // Skip if already at max particles
+	
+	for (let i = 0; i < actualCount; i++) {
 		const speed = random(1, 6)
 		const angle = random(0, Math.PI * 2)
 		const vx = Math.cos(angle) * speed
@@ -451,22 +504,56 @@ function spawnBurst(x, y, count = 40, heartChance = 0.25) {
 
 let lastTime = performance.now()
 function animateParticles(now) {
+	const frameStartTime = performance.now()
+	
+	// Skip frame if not enough time has passed (cap at 60fps)
+	if (now - lastTime < 16) {
+		if (particles.length > 0) particleAnimId = requestAnimationFrame(animateParticles)
+		return
+	}
+	
 	const dt = Math.min(3, (now - lastTime) / 16) // normalized delta
 	lastTime = now
 	if (!ctx) return
+	
+	// Performance optimization: only clear and render if canvas is visible
+	if (particleCanvas.offsetParent === null) {
+		if (particles.length > 0) particleAnimId = requestAnimationFrame(animateParticles)
+		return
+	}
+	
 	ctx.clearRect(0, 0, particleCanvas.width, particleCanvas.height)
-	// update/draw
-	for (let i = particles.length - 1; i >= 0; i--) {
+	
+	// Batch particle updates and removes for better performance
+	const particlesToRemove = []
+	for (let i = 0; i < particles.length; i++) {
 		const p = particles[i]
 		p.update(dt)
 		p.draw(ctx)
-		if (p.life <= 0 || p.y > particleCanvas.height + 100) particles.splice(i, 1)
+		if (p.life <= 0 || p.y > particleCanvas.height + 100) {
+			particlesToRemove.push(i)
+		}
 	}
+	
+	// Remove particles in reverse order to maintain indices
+	for (let i = particlesToRemove.length - 1; i >= 0; i--) {
+		particles.splice(particlesToRemove[i], 1)
+	}
+	
+	// Update performance metrics
+	const frameTime = performance.now() - frameStartTime
+	if (typeof updatePerformanceMetrics === 'function') {
+		updatePerformanceMetrics(frameTime)
+	}
+	
 	if (particles.length > 0) particleAnimId = requestAnimationFrame(animateParticles)
 	else particleAnimId = null
 }
 
 function triggerCelebration(percent) {
+	// Skip if confetti is disabled
+	if (!confettiEnabled) return
+	
 	// big celebration for high %
 	const cx = particleCanvas.width / 2
 	const cy = particleCanvas.height / 4
@@ -480,6 +567,28 @@ function triggerCelebration(percent) {
 		particleAnimId = requestAnimationFrame(animateParticles)
 	}
 }
+
+// Performance optimization: cleanup function for particles
+function cleanupParticles() {
+	if (particleAnimId) {
+		cancelAnimationFrame(particleAnimId)
+		particleAnimId = null
+	}
+	particles = []
+	if (ctx) {
+		ctx.clearRect(0, 0, particleCanvas.width, particleCanvas.height)
+	}
+}
+
+// Cleanup on page unload to prevent memory leaks
+window.addEventListener('beforeunload', cleanupParticles)
+
+// Cleanup when page becomes hidden (mobile/tab switching)
+document.addEventListener('visibilitychange', () => {
+	if (document.hidden) {
+		cleanupParticles()
+	}
+})
 
 /* ============================
    Small floating hearts background
@@ -1163,6 +1272,8 @@ function generateShareImage(name1, name2, percent, opts = {}) {
 	return new Promise((resolve) => {
 		canvas.toBlob(
 			(blob) => {
+				// Performance optimization: clear canvas after generating blob
+				ctx.clearRect(0, 0, canvas.width, canvas.height)
 				resolve(blob)
 			},
 			'image/png',
@@ -1772,3 +1883,40 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
         });
+
+// Performance monitoring (development/debugging helper)
+let performanceMetrics = {
+    particleCount: 0,
+    lastFrameTime: 0,
+    averageFrameTime: 0,
+    frameTimeHistory: [],
+    droppedFrames: 0,
+    canvasResizeCount: 0
+};
+
+function updatePerformanceMetrics(frameTime) {
+    performanceMetrics.lastFrameTime = frameTime;
+    performanceMetrics.frameTimeHistory.push(frameTime);
+    
+    // Keep only last 60 frames for average calculation
+    if (performanceMetrics.frameTimeHistory.length > 60) {
+        performanceMetrics.frameTimeHistory.shift();
+    }
+    
+    // Calculate average frame time
+    const sum = performanceMetrics.frameTimeHistory.reduce((a, b) => a + b, 0);
+    performanceMetrics.averageFrameTime = sum / performanceMetrics.frameTimeHistory.length;
+    
+    // Count dropped frames (frame time > 20ms = below 50fps)
+    if (frameTime > 20) {
+        performanceMetrics.droppedFrames++;
+    }
+    
+    performanceMetrics.particleCount = particles.length;
+}
+
+// Expose performance metrics for debugging (only in development)
+if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+    window.loveCalculatorPerf = performanceMetrics;
+    console.log('Performance monitoring enabled. Access metrics via window.loveCalculatorPerf');
+}
