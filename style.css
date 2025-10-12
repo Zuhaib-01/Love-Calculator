@@ -1220,7 +1220,7 @@ body {
 .panel ul {
 	margin: 0;
 	padding-left: 20px;
-	color: var(--muted);
+	color: #310949;
 	font-size: 13px;
 	line-height: 1.5;
 }
@@ -2771,13 +2771,14 @@ body.dark-mode .feedback-list-section {
 /* Panel link styling */
 .panel-link {
 	display: inline-block;
-	text-decoration: none;
+	text-decoration: underline;
 	font-weight: 500;
+	color: #310949;
 	transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .panel-link:hover {
-	color: var(--accent3);
+	color: #5c074c;
 	transform: scale(1.05);
 }
 
