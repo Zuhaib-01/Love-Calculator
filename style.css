@@ -1570,6 +1570,50 @@ body.light-theme .ghost-btn:hover {
 	transition: all 0.25s ease;
 }
 
+/* Light theme navbar styling */
+body.light-theme .top {
+	background-color: rgba(255, 255, 255, 0.8);
+	backdrop-filter: blur(10px);
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+body.light-theme .menu-toggle {
+	color: #1a1a1a;
+}
+
+/* Light theme mood indicator */
+body.light-theme .mood-indicator {
+	background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+body.light-theme .mood-label {
+	color: #1a1a1a;
+	text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+/* Light theme translate widget */
+body.light-theme .translate-widget {
+	background: linear-gradient(135deg, rgba(40, 37, 63, 0.8), rgba(30, 27, 46, 0.9));
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+body.light-theme .translate-widget:hover {
+	background: linear-gradient(135deg, rgba(50, 47, 73, 0.9), rgba(40, 37, 63, 0.8));
+}
+
+/* Light theme Google Translate button text */
+body.light-theme .goog-te-gadget-simple {
+	color: white !important;
+}
+
+body.light-theme .goog-te-gadget-simple span {
+	color: white !important;
+}
+
 body.light-theme .language-select option {
 	background: white;
 	color: #1a1a1a !important;
