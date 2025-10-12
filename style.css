@@ -1559,13 +1559,13 @@ body.light-theme .sparkle {
 
 body.light-theme .ghost-btn {
 	background: rgba(209, 204, 204, 0.08);
-	color: #1a1a1a;
+	color: #ffffff;
 	border-color: rgba(0, 0, 0, 0.417);
 }
 
 body.light-theme .ghost-btn:hover {
 	background: rgba(0, 0, 0, 0.178);
-	color: #1a1a1a;
+	color: #ffffff;
 	border-color: rgba(0, 0, 0, 0.15);
 	transition: all 0.25s ease;
 }
