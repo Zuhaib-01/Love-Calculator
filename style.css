@@ -956,11 +956,17 @@ body {
 	width: 100%;
 	padding: 14px 16px;
 	background: transparent;
+	transition: all 0.3s ease-in-out;
 	border-radius: 12px;
 	border: 1px solid rgba(255, 255, 255, 0.06);
 	outline: none;
 	color: #fff;
 	font-size: 15px;
+}
+
+.input-wrap input:focus {
+	border-color: #ff2e63;
+	box-shadow: 0 0 0 2px rgba(255, 46, 99, 0.3);
 }
 
 .input-wrap input::placeholder {
@@ -1981,9 +1987,19 @@ body.light-theme {
 /* Example for card / container */
 .container,
 .card {
-	background: var(--card-bg);
+	background: rgba(255, 255, 255, 0.1);
 	color: var(--text);
-	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	box-shadow: 0 8px 32px 0 rgba(255, 46, 99, 0.3);
+	transition: all 0.3s ease-in-out;
+}
+
+.card:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 12px 40px 0 rgba(255, 46, 99, 0.4);
+	border: 1px solid rgba(255, 46, 99, 0.2);
 }
 
 /* Update ring color if needed */
@@ -2090,9 +2106,8 @@ body.light-theme {
 .feedback-label input:focus,
 .feedback-label textarea:focus {
 	outline: none;
-	border-color: #ff2e63;
-	background: white;
-	box-shadow: 0 0 0 3px rgba(255, 46, 99, 0.1);
+	border-color: var(--accent2);
+	box-shadow: 0 0 0 2px rgba(255, 46, 99, 0.3);
 }
 
 .feedback-label textarea {
