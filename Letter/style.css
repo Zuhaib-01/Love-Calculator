@@ -247,7 +247,9 @@ body {
 }
 
 .btn-pixel {
-    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     font-family: 'Press Start 2P', cursive;
     background-color: #ff66aa;
     color: #fff;
@@ -261,6 +263,7 @@ body {
     transition: all 0.1s ease-in-out;
     -webkit-font-smoothing: none;
     font-size: 0.7rem;
+    white-space: nowrap;
 }
 
 .btn-pixel:hover {
@@ -381,6 +384,11 @@ body {
     .action-buttons {
         flex-direction: column;
     }
+
+    
+    .action-buttons .btn-pixel {
+        width: 100%;
+    }
 }
 
 @media (max-width: 576px) {
@@ -400,5 +408,7 @@ body {
     .btn-pixel {
         font-size: 0.6rem;
         padding: 10px;
+        min-width: 0;
+        width: 100%;
     }
 }
