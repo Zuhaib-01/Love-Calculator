@@ -6,6 +6,12 @@
    ============================ */
 
 // Pythagorean letter mapping
+
+document.getElementById('themeToggleBtn').addEventListener('click', function() {
+  document.body.classList.toggle('light-theme');
+  const btn = this;
+  btn.textContent = document.body.classList.contains('light-theme') ? '🌙 Dark Mode' : '☀️ Light Mode';
+});
 const LETTER_MAP = {
 	A: 1,
 	J: 1,
