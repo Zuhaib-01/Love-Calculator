@@ -4,61 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pixel Love Letter Generator</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
-    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <link rel="stylesheet" href="style.css">
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 </head>
-<body class="p-4 md:p-8">
+<body>
+    <div id="app" class="container">
+        <h1 class="title">Pixel Love Letter Generator 💌</h1>
 
-    <div id="app" class="max-w-7xl mx-auto">
-        <h1 class="text-3xl text-center mb-8">Write a Love Letter 💌</h1>
+        <div class="layout-grid">
+            <!-- Compose Message Section -->
+            <div class="compose-section pixel-border">
+                <h2 class="section-title">Compose Your Love Letter</h2>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-
-            <div class="p-6 rounded-xl shadow-lg pixel-border h-full">
-                <h2 class="text-xl mb-4">Compose message</h2>
-
-                <div class="space-y-4 mb-6">
-                    <input type="text" id="inputTo" placeholder="To: My Dearest..." class="w-full rounded-lg" oninput="updatePreview()">
-                    <input type="text" id="inputFrom" placeholder="From: Your Beloved..." class="w-full rounded-lg" oninput="updatePreview()">
-                    <input type="text" id="inputDate" placeholder="Date: (e.g., Feb 14, Year)" class="w-full rounded-lg" oninput="updatePreview()">
-                </div>
-
-                <textarea id="inputContent" oninput="updatePreview()" rows="15" class="w-full rounded-lg" placeholder="Write your heartfelt message here, my love..."></textarea>
-            </div>
-
-            <div>
-                <h2 class="text-xl mb-4">love letter preview</h2>
-
-                <div id="letterPreviewArea" class="love-letter-paper rounded-xl mb-6 transition-all duration-300">
-                    <span class="heart-decoration heart-top-left">❤️</span>
-                    <span class="heart-decoration heart-bottom-right">❤️</span>
-
-                    <div id="previewDate" class="text-sm mb-6 text-right"></div>
-                    
-                    <div id="previewTo" class="mb-4"></div>
-                    
-                    <div id="previewContent" class="text-base"></div>
-
-                    <div id="previewFrom" class="mt-12 pt-4 border-t border-dotted border-pink-400">
-                        <p class="text-sm italic">With all my love,</p>
-                        <p class="font-bold"></p>
+                <div class="input-group">
+                    <div class="input-row">
+                        <input type="text" id="inputTo" placeholder="To: My Dearest..." oninput="updatePreview()">
+                    </div>
+                    <div class="input-row">
+                        <input type="text" id="inputFrom" placeholder="From: Your Beloved..." oninput="updatePreview()">
+                    </div>
+                    <div class="input-row">
+                        <input type="text" id="inputDate" placeholder="Date: (e.g., Feb 14, Year)" oninput="updatePreview()">
                     </div>
                 </div>
 
-                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                    <button onclick="exportAsPng()" class="flex-1 btn-pixel btn-green">
+                <div class="message-input-container">
+                    <textarea id="inputContent" oninput="updatePreview()" placeholder="Write your heartfelt message here, my love..." maxlength="800"></textarea>
+                    <div id="charCounter" class="char-counter">0/800</div>
+                </div>
+            </div>
+
+            <!-- Preview Section -->
+            <div class="preview-section">
+                <div id="letterPreviewArea" class="love-letter-paper">
+                    <span class="heart-decoration heart-top-left">❤️</span>
+                    <span class="heart-decoration heart-bottom-right">❤️</span>
+
+                    <div class="letter-content">
+                        <div id="previewDate" class="letter-date"></div>
+                        <div id="previewTo" class="letter-to"></div>
+                        <div id="previewContent" class="letter-text"></div>
+                        <div id="previewFrom" class="letter-from">
+                            <p class="closing">With all my love,</p>
+                            <p class="signature"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button onclick="exportAsPng()" class="btn-pixel btn-green">
                         Export as PNG ✨
                     </button>
-                    <button onclick="copyDocumentToClipboard()" class="flex-1 btn-pixel btn-blue">
+                    <button onclick="copyDocumentToClipboard()" class="btn-pixel btn-blue">
                         Copy Text to Clipboard
                     </button>
                 </div>
                 
-                <div id="messageBox" class="message-box mt-4 p-3 hidden"></div>
+                <div id="messageBox" class="message-box"></div>
             </div>
-
         </div>
     </div>
     <script src="script.js"></script>
