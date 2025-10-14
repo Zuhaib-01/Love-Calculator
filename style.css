@@ -1,3 +1,36 @@
+/* Dark mode styles */
+body.dark-mode {
+  background-color: #121212;  /* dark background for the whole page */
+  color: #f0f0f0;             /* light text for readability */
+}
+body.dark-mode header,
+body.dark-mode .navbar,
+body.dark-mode .container,
+body.dark-mode .sidebar {
+  background-color: #1e1e1e; /* slightly lighter for contrast */
+  color: #f0f0f0;
+}
+
+body.dark-mode input,
+body.dark-mode button,
+body.dark-mode select {
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #555;
+}
+
+body.dark-mode {
+  background-color: #121212;
+  color: #f0f0f0;
+}
+
+body.dark-mode input, 
+body.dark-mode button {
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #555;
+}
+
 :root {
 	--bg-1: #11121a;
 	--card: rgba(255, 255, 255, 0.04);
