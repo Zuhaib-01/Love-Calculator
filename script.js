@@ -83,13 +83,13 @@ const feedbackPopupOverlay = document.getElementById('feedbackPopupOverlay')
 const shareLinkPopupOverlay = document.getElementById('shareLinkPopupOverlay')
 const closeFeedbackPopup = document.getElementById('closeFeedbackPopup')
 const closeShareLinkPopup = document.getElementById('closeShareLinkPopup')
-const closeShareLinkBtn = document.getElementById('closeShareLinkBtn')
+const closeShareLink = document.getElementById('closeShareLink')
 const copyShareLink = document.getElementById('copyShareLink')
 const feedbackForm = document.getElementById('feedbackForm')
 const cancelFeedback = document.getElementById('cancelFeedback')
 const feedbackSuccess = document.getElementById('feedbackSuccess')
 const feedbackList = document.getElementById('feedbackList')
-const clearFeedbackBtn = document.getElementById('clearFeedback')
+const clearFeedbackBtn = document.getElementById('clearFeedback') // May not exist in HTML
 const ratingStars = document.querySelectorAll('.rating-stars .star')
 const feedbackRatingInput = document.getElementById('feedbackRating')
 const feedbackMessage = document.getElementById('feedbackMessage')
@@ -1451,32 +1451,39 @@ if (shareInstagram) {
 }
 
 // Copy Link
-copyLinkBtn.addEventListener('click', () => {
-    // Do NOT copy here. Only open the popup and prefill the link.
-    try {
-        document.getElementById('shareLinkInput').value = window.location.href
-        shareLinkPopupOverlay.classList.remove('hidden')
-    } catch (_) {}
-})
+if (copyLinkBtn && shareLinkPopupOverlay) {
+	copyLinkBtn.addEventListener('click', () => {
+		// Do NOT copy here. Only open the popup and prefill the link.
+		try {
+			const shareLinkInput = document.getElementById('shareLinkInput')
+			if (shareLinkInput) {
+				shareLinkInput.value = window.location.href
+			}
+			shareLinkPopupOverlay.classList.remove('hidden')
+		} catch (_) {}
+	})
+}
 
-copyShareLink.addEventListener('click', () => {
-    const original = copyShareLink.textContent
-    copyShareLink.disabled = true
-    navigator.clipboard
-        .writeText(window.location.href)
-        .then(() => {
-            copyShareLink.textContent = 'Copied!'
-            showToast('Link copied to clipboard!')
-            setTimeout(() => {
-                copyShareLink.textContent = original
-                copyShareLink.disabled = false
-            }, 1600)
-        })
-        .catch(() => {
-            alert('Failed to copy link')
-            copyShareLink.disabled = false
-        })
-})
+if (copyShareLink) {
+	copyShareLink.addEventListener('click', () => {
+		const original = copyShareLink.textContent
+		copyShareLink.disabled = true
+		navigator.clipboard
+			.writeText(window.location.href)
+			.then(() => {
+				copyShareLink.textContent = 'Copied!'
+				showToast('Link copied to clipboard!')
+				setTimeout(() => {
+					copyShareLink.textContent = original
+					copyShareLink.disabled = false
+				}, 1600)
+			})
+			.catch(() => {
+				alert('Failed to copy link')
+				copyShareLink.disabled = false
+			})
+	})
+}
 
 historyBtn.addEventListener('click', () => {
 	historyPopupOverlay.classList.remove('hidden')
@@ -1597,42 +1604,55 @@ closeHistoryPopup.addEventListener('click', () => {
 	}
 })()
 
-feedbackBtn.addEventListener('click', () => {
-	feedbackPopupOverlay.classList.remove('hidden')
-	renderFeedbackList()
-})
+if (feedbackBtn && feedbackPopupOverlay) {
+	feedbackBtn.addEventListener('click', () => {
+		feedbackPopupOverlay.classList.remove('hidden')
+		renderFeedbackList()
+	})
+}
 
 // Close feedback popup
-closeFeedbackPopup.addEventListener('click', () => {
-	feedbackPopupOverlay.classList.add('hidden')
-	resetFeedbackForm()
-})
-
-// Close share link popup
-closeShareLinkPopup.addEventListener('click', () => {
-	shareLinkPopupOverlay.classList.add('hidden')
-})
-
-// Cancel shareLink popup
-closeShareLink.addEventListener('click', () => {
-	shareLinkPopupOverlay.classList.add('hidden')
-})
-
-cancelFeedback.addEventListener('click', () => {
-	feedbackPopupOverlay.classList.add('hidden')
-	resetFeedbackForm()
-})
-
-// Close on overlay click
-feedbackPopupOverlay.addEventListener('click', (e) => {
-	if (e.target === feedbackPopupOverlay) {
+if (closeFeedbackPopup && feedbackPopupOverlay) {
+	closeFeedbackPopup.addEventListener('click', () => {
 		feedbackPopupOverlay.classList.add('hidden')
 		resetFeedbackForm()
-	}
-})
+	})
+}
+
+// Close share link popup
+if (closeShareLinkPopup && shareLinkPopupOverlay) {
+	closeShareLinkPopup.addEventListener('click', () => {
+		shareLinkPopupOverlay.classList.add('hidden')
+	})
+}
+
+// Cancel shareLink popup
+if (closeShareLink && shareLinkPopupOverlay) {
+	closeShareLink.addEventListener('click', () => {
+		shareLinkPopupOverlay.classList.add('hidden')
+	})
+}
+
+if (cancelFeedback && feedbackPopupOverlay) {
+	cancelFeedback.addEventListener('click', () => {
+		feedbackPopupOverlay.classList.add('hidden')
+		resetFeedbackForm()
+	})
+}
+
+// Close on overlay click
+if (feedbackPopupOverlay) {
+	feedbackPopupOverlay.addEventListener('click', (e) => {
+		if (e.target === feedbackPopupOverlay) {
+			feedbackPopupOverlay.classList.add('hidden')
+			resetFeedbackForm()
+		}
+	})
+}
 
 // Rating stars functionality
-ratingStars.forEach((star) => {
+if (ratingStars && ratingStars.length > 0) {
+	ratingStars.forEach((star) => {
 	star.addEventListener('click', () => {
 		const rating = parseInt(star.getAttribute('data-rating'))
 		feedbackRatingInput.value = rating
@@ -1660,29 +1680,38 @@ ratingStars.forEach((star) => {
 			}
 		})
 	})
-})
+	})
+}
 
-document.querySelector('.rating-stars').addEventListener('mouseleave', () => {
-	const currentRating = parseInt(feedbackRatingInput.value)
-	ratingStars.forEach((s) => {
-		const starRating = parseInt(s.getAttribute('data-rating'))
-		if (starRating <= currentRating) {
-			s.style.filter = 'grayscale(0%)'
-			s.style.opacity = '1'
-		} else {
-			s.style.filter = 'grayscale(100%)'
-			s.style.opacity = '0.4'
+const ratingStarsContainer = document.querySelector('.rating-stars')
+if (ratingStarsContainer && feedbackRatingInput) {
+	ratingStarsContainer.addEventListener('mouseleave', () => {
+		const currentRating = parseInt(feedbackRatingInput.value)
+		if (ratingStars && ratingStars.length > 0) {
+			ratingStars.forEach((s) => {
+				const starRating = parseInt(s.getAttribute('data-rating'))
+				if (starRating <= currentRating) {
+					s.style.filter = 'grayscale(0%)'
+					s.style.opacity = '1'
+				} else {
+					s.style.filter = 'grayscale(100%)'
+					s.style.opacity = '0.4'
+				}
+			})
 		}
 	})
-})
+}
 
 // Character count for textarea
-feedbackMessage.addEventListener('input', () => {
-	charCount.textContent = feedbackMessage.value.length
-})
+if (feedbackMessage && charCount) {
+	feedbackMessage.addEventListener('input', () => {
+		charCount.textContent = feedbackMessage.value.length
+	})
+}
 
 // Submit feedback
-feedbackForm.addEventListener('submit', (e) => {
+if (feedbackForm) {
+	feedbackForm.addEventListener('submit', (e) => {
 	e.preventDefault()
 
 	const name = document.getElementById('feedbackName').value.trim() || 'Anonymous'
@@ -1729,9 +1758,12 @@ feedbackForm.addEventListener('submit', (e) => {
 		renderFeedbackList()
 	}, 2000)
 })
+}
 
 // Render feedback list
 function renderFeedbackList() {
+	if (!feedbackList) return
+	
 	if (feedbacks.length === 0) {
 		feedbackList.innerHTML =
 			'<p style="text-align:center; color: var(--text-secondary);">No feedback yet. Be the first!</p>'
@@ -1773,12 +1805,14 @@ function renderFeedbackList() {
 
 // Reset feedback form
 function resetFeedbackForm() {
-	feedbackForm.reset()
-	feedbackRatingInput.value = '0'
-	ratingStars.forEach((s) => s.classList.remove('active'))
-	charCount.textContent = '0'
-	feedbackSuccess.classList.add('hidden')
-	feedbackForm.style.display = 'flex'
+	if (feedbackForm) feedbackForm.reset()
+	if (feedbackRatingInput) feedbackRatingInput.value = '0'
+	if (ratingStars && ratingStars.length > 0) {
+		ratingStars.forEach((s) => s.classList.remove('active'))
+	}
+	if (charCount) charCount.textContent = '0'
+	if (feedbackSuccess) feedbackSuccess.classList.add('hidden')
+	if (feedbackForm) feedbackForm.style.display = 'flex'
 }
 
 // Escape HTML to prevent XSS
