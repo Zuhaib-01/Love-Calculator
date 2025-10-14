@@ -331,6 +331,64 @@ function applyMoodTheme(mood) {
 }
 
 // Enhanced Oracle Messages with mystical flair
+const ORACLE_MESSAGES = {
+	dreamy: [
+		'The cosmos whispers secrets of eternal connection... ✨',
+		'Stars align in perfect harmony for your love story... 🌟',
+		'Moonlight reveals the depth of your cosmic bond... 🌙',
+		'Celestial energies dance in your romantic aura... 💫',
+		'Your love resonates through the universal symphony... 🎵',
+	],
+	passionate: [
+		'Flames of passion burn eternally in your hearts... 🔥',
+		'Your souls ignite with irresistible magnetic fire... 💥',
+		'Passion flows like molten gold through your connection... 🌋',
+		'Hearts beat in perfect sync with burning intensity... ❤️‍🔥',
+		'Love\'s fire consumes all doubts and fears... 🔥',
+	],
+	adventurous: [
+		'Embark on love\'s greatest adventure together... 🗺️',
+		'Your spirits soar on wings of shared exploration... 🦅',
+		'Every moment becomes an exciting chapter... 📖',
+		'Love\'s journey unfolds with thrilling discoveries... 🧭',
+		'Together you conquer love\'s highest peaks... ⛰️',
+	],
+	flirty: [
+		'Butterflies dance in anticipation of your touch... 🦋',
+		'Love\'s playful whispers tease the heart... 😘',
+		'Sparks fly in your flirtatious energy field... ⚡',
+		'Hearts flutter with delightful anticipation... 💕',
+		'Love blooms in your charming interactions... 🌸',
+	],
+	playful: [
+		'Love sparkles with joyful playfulness... ✨',
+		'Hearts giggle in harmonious delight... 😄',
+		'Your connection dances with lighthearted magic... 💃',
+		'Love\'s energy bubbles with sweet mischief... 🫧',
+		'Joyful hearts create beautiful memories... 🎈',
+	],
+	curious: [
+		'Love\'s mysteries unfold in your shared curiosity... 🔍',
+		'Hearts explore the depths of connection... 🌊',
+		'Questions lead to beautiful discoveries... 💭',
+		'Love grows through shared wonder... 🌱',
+		'Curiosity strengthens your romantic bond... 🤔',
+	],
+	friendly: [
+		'Love blooms from the seeds of friendship... 🌻',
+		'Hearts connect in warm, gentle harmony... ☕',
+		'Love grows in the garden of companionship... 🌷',
+		'Your friendship forms love\'s strong foundation... 🤝',
+		'Love flourishes in your caring connection... 💝',
+	],
+	chill: [
+		'Love flows peacefully like a gentle stream... 🏞️',
+		'Hearts find tranquility in each other\'s presence... 🧘',
+		'Love whispers softly in moments of calm... 🍃',
+		'Peaceful energy surrounds your connection... ☮️',
+		'Love rests comfortably in your shared space... 🛋️',
+	],
+}
 
 // Get mystical oracle message based on mood
 function getMysticalOracleMessage(moodKey) {
