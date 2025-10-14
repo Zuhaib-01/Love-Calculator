@@ -1981,6 +1981,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
         });
+function resetAll() {
+    name1El.value = '';
+    name2El.value = '';
+    heading.textContent = 'Waiting for names...';
+    description.textContent = 'Try entering your names and press Calculate.';
+    animateRingTo(0);
+    hideMoodAndTips();
+    showToast('All fields reset! ✨');
+}
+
+document.getElementById('resetAllBtn').addEventListener('click', resetAll);
 
 // Performance monitoring (development/debugging helper)
 let performanceMetrics = {
