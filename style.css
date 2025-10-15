@@ -1349,7 +1349,7 @@ body {
 	border: 1px solid rgba(255, 255, 255, 0.04);
 	padding: 10px 12px;
 	border-radius: 10px;
-	color: var(--muted);
+	color: black;
 	cursor: pointer;
 	transition: all 0.2s ease;
 	font-size: 13px;
@@ -1827,13 +1827,13 @@ body.light-theme .sparkle {
 
 body.light-theme .ghost-btn {
 	background: rgba(209, 204, 204, 0.08);
-	color: #ffffff;
+	color: black;
 	border-color: rgba(0, 0, 0, 0.417);
 }
 
 body.light-theme .ghost-btn:hover {
 	background: rgba(0, 0, 0, 0.178);
-	color: #ffffff;
+	color: black;
 	border-color: rgba(0, 0, 0, 0.15);
 	transition: all 0.25s ease;
 }
