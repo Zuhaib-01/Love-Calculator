@@ -568,11 +568,17 @@ function spawnBurst(x, y, count = 40, heartChance = 0.25) {
 
 let lastTime = performance.now()
 function animateParticles(now) {
+	// Performance optimization: stop animation immediately if no particles exist
+	if (particles.length === 0) {
+		particleAnimId = null
+		return
+	}
+	
 	const frameStartTime = performance.now()
 	
 	// Skip frame if not enough time has passed (cap at 60fps)
 	if (now - lastTime < 16) {
-		if (particles.length > 0) particleAnimId = requestAnimationFrame(animateParticles)
+		particleAnimId = requestAnimationFrame(animateParticles)
 		return
 	}
 	
@@ -582,7 +588,7 @@ function animateParticles(now) {
 	
 	// Performance optimization: only clear and render if canvas is visible
 	if (particleCanvas.offsetParent === null) {
-		if (particles.length > 0) particleAnimId = requestAnimationFrame(animateParticles)
+		particleAnimId = requestAnimationFrame(animateParticles)
 		return
 	}
 	
