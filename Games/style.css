@@ -691,3 +691,75 @@ header {
         font-size: 1.2rem;
     }
 }
+
+/* Back to Home Button Styles */
+.back-to-home-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    padding: 12px 24px;
+    background: linear-gradient(90deg, #fe8888ca, #ff2e62ea);
+    color: white;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 16px;
+    box-shadow: 0 10px 30px rgba(255, 46, 99, 0.3);
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.back-to-home-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(255, 46, 99, 0.4);
+}
+
+.back-to-home-btn:active {
+    transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+    .back-to-home-btn {
+        padding: 8px 16px;
+        font-size: 13px;
+        top: 10px;
+        left: 10px;
+        gap: 6px;
+    }
+}
+
+@media (max-width: 480px) {
+    .back-to-home-btn {
+        padding: 6px 12px;
+        font-size: 12px;
+        top: 10px;
+        left: 10px;
+    }
+    
+}
+
+/* Add padding to page heading to prevent overlap */
+.page-header,
+.wheel-header,
+h1 {
+    padding-top: 70px !important; /* Space for fixed button */
+}
+
+@media (max-width: 768px) {
+    .page-header,
+    .wheel-header,
+    h1 {
+        padding-top: 60px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-header,
+    .wheel-header,
+    h1 {
+        padding-top: 55px !important;
+    }
+}

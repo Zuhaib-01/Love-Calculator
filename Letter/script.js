@@ -1,22 +1,37 @@
+// DOM Elements
 const inputTo = document.getElementById('inputTo');
 const inputFrom = document.getElementById('inputFrom');
 const inputDate = document.getElementById('inputDate');
 const inputContent = document.getElementById('inputContent');
+const charCounter = document.getElementById('charCounter');
 
 const previewDate = document.getElementById('previewDate');
 const previewTo = document.getElementById('previewTo');
 const previewContent = document.getElementById('previewContent');
-const previewFrom = document.getElementById('previewFrom').querySelector('p:last-child');
+const previewFrom = document.querySelector('.signature');
 
 const messageBox = document.getElementById('messageBox');
 const letterPreviewArea = document.getElementById('letterPreviewArea');
 
-
+// Update preview function
 function updatePreview() {
     const toValue = inputTo.value.trim();
     const fromValue = inputFrom.value.trim();
     const dateValue = inputDate.value.trim() || new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
     const contentValue = inputContent.value;
+
+    // Update character counter
+    const charCount = contentValue.length;
+    charCounter.textContent = `${charCount}/800`;
+    
+    // Change counter color based on usage
+    if (charCount > 700) {
+        charCounter.className = 'char-counter danger';
+    } else if (charCount > 500) {
+        charCounter.className = 'char-counter warning';
+    } else {
+        charCounter.className = 'char-counter';
+    }
 
     previewDate.textContent = dateValue;
     previewTo.textContent = toValue || 'My Dearest [Recipient],';
@@ -24,7 +39,7 @@ function updatePreview() {
     previewContent.textContent = contentValue;
 }
 
-
+// Show message function
 function showMessage(text, type = 'info') {
     const typeClasses = {
         success: 'success',
@@ -32,7 +47,7 @@ function showMessage(text, type = 'info') {
         info: 'info'
     };
 
-    messageBox.className = `message-box mt-4 p-3 ${typeClasses[type]}`;
+    messageBox.className = `message-box ${typeClasses[type]}`;
     messageBox.textContent = text;
     messageBox.style.display = 'block';
 
@@ -41,7 +56,7 @@ function showMessage(text, type = 'info') {
     }, 3000);
 }
 
-
+// Generate full text for copying
 function generateFullText() {
     const date = previewDate.textContent;
     const to = inputTo.value.trim();
@@ -54,6 +69,7 @@ function generateFullText() {
     return `${date}\n\n${recipientLine}\n\n${content}${signatureLine}`;
 }
 
+// Copy to clipboard function
 function copyDocumentToClipboard() {
     const fullText = generateFullText();
 
@@ -79,25 +95,23 @@ function copyDocumentToClipboard() {
     }
 }
 
-
+// Export as PNG function
 async function exportAsPng() {
     showMessage('⏳ Generating PNG... Please wait! ⏳', 'info');
 
-
-  
     const tempPrintableArea = document.createElement('div');
     tempPrintableArea.className = 'printable-letter-area'; 
     tempPrintableArea.innerHTML = `
-                <span class="heart-decoration heart-top-left">❤️</span>
-                <span class="heart-decoration heart-bottom-right">❤️</span>
-                <div class="text-sm mb-6 text-right">${previewDate.textContent}</div>
-                <div class="mb-4">${previewTo.textContent}</div>
-                <div class="text-base">${previewContent.textContent}</div>
-                <div class="mt-12 pt-4 border-t border-dotted border-pink-400">
-                    <p class="text-sm italic">With all my love,</p>
-                    <p class="font-bold">${previewFrom.textContent}</p>
-                </div>
-            `;
+        <span class="heart-decoration heart-top-left">❤️</span>
+        <span class="heart-decoration heart-bottom-right">❤️</span>
+        <div class="letter-date">${previewDate.textContent}</div>
+        <div class="letter-to">${previewTo.textContent}</div>
+        <div class="letter-text">${previewContent.textContent}</div>
+        <div class="letter-from">
+            <p class="closing">With all my love,</p>
+            <p class="signature">${previewFrom.textContent}</p>
+        </div>
+    `;
     document.body.appendChild(tempPrintableArea);
 
     try {
@@ -127,7 +141,7 @@ async function exportAsPng() {
     }
 }
 
-
+// Initialize the app with default values
 window.onload = () => {
     const today = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
     inputDate.value = today;

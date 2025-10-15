@@ -6,18 +6,19 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1" />
 	<!-- SEO basics -->
   	<meta name="description" content="Love Alchemy — Discover love compatibility using numerology, fun animations, and shareable results. Find out your soul chemistry today!">
-  	<meta name="keywords" content="love calculator, numerology love, love compatibility, love test, soulmate calculator, romantic compatibility, Love Alchemy">
+  	<meta name="keywords" content="love calculator, numerology love, love compatibility, love test, soulmate calculator, romantic compatibility, Love Alchemy">
 	<link rel="icon" href="hearts.png" type="image/x-icon" />
 	<title>Love Alchemy — Advanced Love Calculator 💘</title>
 	<link rel="stylesheet" href="style.css" />
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;900&display=swap" rel="stylesheet" />
+
 	<!-- Google Translate -->
 	<script type="text/javascript">
 		function googleTranslateElementInit() {
 			new google.translate.TranslateElement(
 				{
 					pageLanguage: 'en',
-					includedLanguages: 'es,fr,en,de,it,pt,ru,zh,ja,ko,ar,hi,tr,pl,nl,sv',
+					includedLanguages: 'es,hi,fr,en,de,it,pt,ru,zh,ja,ko,ar,hi,tr,pl,nl,sv',
 					layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
 					autoDisplay: false,
 				},
@@ -25,7 +26,7 @@
 			)
 		}
 	</script>
-	<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+	<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
@@ -35,10 +36,9 @@
 		<header class="top">
 			<div class="logo">
   <a href="index.html">
-    <img src="/logo.svg" alt="Logo" width="200px" />
+    <img src="logo.svg" alt="Logo" />
   </a>
 </div>
-
 
 			<!-- Mood indicator for entire page -->
 			<div id="moodIndicator" class="mood-indicator hidden">
@@ -55,9 +55,9 @@
                 <button id="historyBtn" class="ghost-btn" title="View history">📜 History</button>
                 <button id="feedbackBtn" class="ghost-btn" title="Give Feedback">💬 Feedback</button>
                 <button id="resetBtn" class="ghost-btn" title="Reset inputs">🔁 Reset</button>
-                <div id="google_translate_element" class="translate-widget"></div>
+                <div id="google_translate_element"></div>
 				<button id="confettiToggle" class="ghost-btn" title="Toggle confetti">🎊 Confetti (on)</button>
-                <button id="themeToggleBtn" class="ghost-btn" title="Theme">🌙 Theme</button>
+                <button id="themeToggleBtn" class="ghost-btn" title="Theme">☀️ Light Mode</button>
             </div>
 		</header>
 
@@ -98,6 +98,7 @@
 
 					<div class="actions">
 						<button id="calcBtn" class="primary">Calculate Love ❤️</button>
+						 <button type="button" id="resetAllBtn" class="primary">Reset All 🔄</button>
 						<a href="./Games/index.html" class="primary NG">Love Spinner ❤️</a>
 						<a href="./Letter/index.html" class="primary NG">Write a letter</a>
 					</div>
@@ -180,8 +181,8 @@
 				<div class="panel tips-panel">
 					<h3>Quick Links</h3>
 					<ul>
-						<li><a href="about.html" class="panel-link">📖 About Love Alchemy</a></li>
-						<li><a href="how-it-works.html" class="panel-link">⚙️ How It Works</a></li>
+						<li><a href="about.html" class="panel-link" target="_blank">📖 About Love Alchemy</a></li>
+						<li><a href="how-it-works.html" class="panel-link" target="_blank">⚙️ How It Works</a></li>
 						<li>Same names → same result (unless jitter is allowed)</li>
 						<li>Share your results with friends below!</li>
 					</ul>
@@ -227,6 +228,10 @@
 						<i class="fa-brands fa-instagram"></i>
 						<span>Instagram</span>
 					</a>
+					<a href="#" id="shareSnapchat" class="share-btn share-snapchat" title="Share on Snapchat">
+						<i class="fa-brands fa-snapchat"></i>
+						<span>Snapchat</span>
+					</a>
 				</div>
 				
 				<div class="download-options">
@@ -258,7 +263,7 @@
 			<div class="history-popup-content">
 				<div id="historyList" class="history-list"></div>
 				<div class="history-actions">
-					<button id="exportHistoryBtn">Export History as PDF</button>
+					<button id="exportHistoryBtn" class="primary">Export History as PDF</button>
 					<button id="clearHistory" class="outline">Clear history</button>
 				</div>
 			</div>
@@ -342,7 +347,6 @@
 				<div class="feedback-list-section">
 					<h4>Recent Feedback</h4>
 					<div id="feedbackList" class="feedback-list"></div>
-					<!-- <button id="clearFeedback" class="outline">Clear All Feedback</button> -->
 				</div>
 			</div>
 		</div>
@@ -384,13 +388,14 @@
       <button onclick="window.scrollTo({top:0, behavior:'smooth'})">Top</button>
       <button onclick="alert('Subscribe feature coming soon!')">Subscribe</button>
       <button onclick="window.location.href='#contact'">Contact</button>
-      <button onclick="window.location.href='#about'">About</button>
+      <button onclick="window.location.href='about.html'" >About</button>
     </div>
 
     <!-- Copyright -->
     <p class="footer-copy">© 2025 All rights reserved.</p>
   </div>
 </footer>
+
 
 		<!-- Footer -->
 		<div id="footer-placeholder"></div>
@@ -403,6 +408,34 @@
 					document.getElementById('footer-placeholder').innerHTML = html;
 				});
 		</script>
+
+		<!-- Contact Section (target for footer Contact button) -->
+		<section id="contact" class="contact-section">
+			<div class="contact-container">
+				<h2>Contact</h2>
+				<p>If you'd like to get in touch, drop a message here.</p>
+
+				<form id="contactForm" class="contact-form" onsubmit="event.preventDefault(); alert('Thanks — message sent (demo).');">
+					<label>
+						Name
+						<input type="text" id="contactName" placeholder="Your name" required />
+					</label>
+					<label>
+						Email
+						<input type="email" id="contactEmail" placeholder="you@example.com" required />
+					</label>
+					<label>
+						Message
+						<textarea id="contactMessage" rows="4" placeholder="Write a short message..." required></textarea>
+					</label>
+					<div class="contact-actions">
+						<button type="submit" class="primary">Send Message</button>
+						<button type="button" class="outline" onclick="window.location.hash='top';">Back to top</button>
+					</div>
+				</form>
+			</div>
+		</section>
+
 
 		<script src="script.js"></script>
 	</body>
