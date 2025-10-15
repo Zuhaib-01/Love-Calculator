@@ -2818,6 +2818,10 @@ body.dark-mode .feedback-list-section {
 	transform: translateY(0);
 	transition: transform 0.3s ease;
 }
+#shareSnapchat {
+	transform: translateY(0);
+	transition: transform 0.3s ease;
+}
 #generateLoveCard {
 	transform: translateY(0);
 	transition: transform 0.3s ease;
@@ -2843,6 +2847,9 @@ body.dark-mode .feedback-list-section {
 	transform: scale(1.05);
 }
 #shareInstagram:hover {
+	transform: scale(1.05);
+}
+#shareSnapchat:hover {
 	transform: scale(1.05);
 }
 #copyLinkBtn:hover {
@@ -3068,6 +3075,10 @@ body.dark-mode .feedback-list-section {
 }
 
 .share-instagram:hover {
+	background: linear-gradient(135deg, #e1306c, #c13584);
+}
+
+.share-snapchat:hover {
 	background: linear-gradient(135deg, #e1306c, #c13584);
 }
 
