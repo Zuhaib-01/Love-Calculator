@@ -1398,6 +1398,7 @@ const shareWhatsapp = document.getElementById('shareWhatsapp')
 const shareTwitter = document.getElementById('shareTwitter')
 const shareFacebook = document.getElementById('shareFacebook')
 const shareInstagram = document.getElementById('shareInstagram')
+const shareSnapchat = document.getElementById('shareSnapchat')
 const copyLinkBtn = document.getElementById('copyLinkBtn')
 
 function getShareText() {
@@ -1448,6 +1449,41 @@ if (shareInstagram) {
 			alert('Sorry, we could not copy the link to your clipboard.')
 		})
 	})
+}
+
+// Snapchat
+if (shareSnapchat) {
+	shareSnapchat.addEventListener('click', (event) => {
+		event.preventDefault();
+		const pageUrl = window.location.href;
+		const encodedUrl = encodeURIComponent(pageUrl);
+
+		// Simple device detection
+		const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+		if (isMobile) {
+			// 📱 Try to open Snapchat app with deep link
+			window.location.href = `snapchat://send?text=${encodedUrl}`;
+
+			// Optional: fallback if Snapchat not installed
+			setTimeout(() => {
+				alert('If Snapchat did not open, please make sure the app is installed.');
+			}, 1500);
+		} else {
+			// 💻 Copy link to clipboard
+			navigator.clipboard.writeText(pageUrl).then(() => {
+				alert('Link copied! You can now paste it into your Snapchat chat or story.');
+
+				const textEl = shareSnapchat.querySelector('span');
+				const originalText = textEl.textContent;
+				textEl.textContent = 'Copied!';
+				setTimeout(() => (textEl.textContent = originalText), 3000);
+			}).catch(err => {
+				console.error('Failed to copy link:', err);
+				alert('Sorry, we could not copy the link to your clipboard.');
+			});
+		}
+	});
 }
 
 // Copy Link
