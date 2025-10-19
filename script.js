@@ -206,6 +206,30 @@ if (getSongBtn) {
 		if (songMood) songMood.textContent = song.mood
 		if (songYouTubeLink) songYouTubeLink.href = song.youtubeUrl
 		
+		// Set up YouTube thumbnail
+		const videoId = extractYouTubeVideoId(song.youtubeUrl)
+		const thumbnailImg = document.getElementById('thumbnailImg')
+		const songThumbnail = document.getElementById('songThumbnail')
+
+		if (thumbnailImg && videoId) {
+			thumbnailImg.src = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`
+			
+			thumbnailImg.onload = () => {
+				// Check if it's the default "no thumbnail" image (120x90)
+				if (thumbnailImg.naturalWidth === 120 && thumbnailImg.naturalHeight === 90) {
+					thumbnailImg.src = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`
+				}
+			}
+			
+			thumbnailImg.onerror = () => {
+				thumbnailImg.src = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`
+			}
+
+			if (songThumbnail) {
+				songThumbnail.onclick = () => window.open(song.youtubeUrl, '_blank')
+			}
+		}
+		
 		if (songRecommendation) songRecommendation.classList.remove('hidden')
 	})
 }
