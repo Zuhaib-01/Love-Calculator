@@ -101,6 +101,7 @@
 						 <button type="button" id="resetAllBtn" class="primary">Reset All 🔄</button>
 						<a href="./Games/index.html" class="primary NG">Love Spinner ❤️</a>
 						<a href="./Letter/index.html" class="primary NG">Write a letter</a>
+						<button type="button" id="coupleSongBtn" class="primary NG">🎵 Love Song</button>
 					</div>
 
 					<div class="result-area" aria-live="polite">
@@ -118,7 +119,7 @@
 							<g class="text-layer">
 								<text id="percentText" class="percent-text" x="50%" y="50%" dominant-baseline="middle"
 									text-anchor="middle">
-									--%
+									80%
 								</text>
 							</g>
 						</svg>
@@ -373,6 +374,41 @@
 					<div class="feedback-actions">
 						<button type="button" id="copyShareLink" class="primary">Copy Link</button>
 						<button type="button" id="closeShareLink" class="outline">Close</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- Couple's Song Popup Modal -->
+	<div class="sharelink-popup-overlay hidden" id="coupleSongPopupOverlay">
+		<div class="feedback-popup" id="coupleSongPanel">
+			<div class="feedback-popup-header">
+				<h3>🎵 Love Song</h3>
+				<button class="close-popup" id="closeCoupleSongPopup" title="Close">✕</button>
+			</div>
+			<div class="feedback-popup-content">
+				<form id="coupleSongForm" class="feedback-form">
+					<label for="songPercentInput" class="shareLink-label">
+						Love Percentage (0-100)
+						<input type="number" id="songPercentInput" min="0" max="100" placeholder="Enter your love percentage" />
+						<div id="songPercentError" class="input-error hidden">Please enter a valid percentage between 0 and 100.</div>
+					</label>
+
+					<div id="songRecommendation" class="song-recommendation hidden">
+						<div class="song-info">
+							<h4 id="songTitle"></h4>
+							<p id="songArtist"></p>
+							<p id="songMood"></p>
+							<div class="song-buttons">
+								<a id="songYouTubeLink" href="#" target="_blank" class="primary">Listen on YouTube</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="feedback-actions">
+						<button type="button" id="getSongBtn" class="primary">Get Song Recommendation</button>
+						<button type="button" id="closeCoupleSong" class="outline">Close</button>
 					</div>
 				</form>
 			</div>
