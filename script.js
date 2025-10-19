@@ -241,6 +241,25 @@ if (getSongBtn) {
 		}
 		
 		if (songRecommendation) songRecommendation.classList.remove('hidden')
+		
+		// Setup share song button
+		const shareSongBtn = document.getElementById('shareSongBtn')
+		if (shareSongBtn) {
+			shareSongBtn.onclick = (event) => {
+				event.preventDefault()
+				event.stopPropagation()
+				navigator.clipboard.writeText(song.youtubeUrl).then(() => {
+					const originalContent = shareSongBtn.innerHTML
+					shareSongBtn.innerHTML = '<i class="fa-solid fa-check"></i><span>Copied!</span>'
+					showToast('Song link copied to clipboard!')
+					setTimeout(() => {
+						shareSongBtn.innerHTML = originalContent
+					}, 2000)
+				}).catch(() => {
+					alertDialog('Failed to copy link', 'Error')
+				})
+			}
+		}
 	})
 }
 

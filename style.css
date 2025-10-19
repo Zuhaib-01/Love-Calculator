@@ -3203,6 +3203,30 @@ body.dark-mode .feedback-list-section {
 	gap: 10px;
 	margin-top: 1rem;
 	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.song-info a {
+	display: inline-block;
+	text-decoration: none;
+	background: linear-gradient(135deg, #ff4757, #ff3742);
+	border: none;
+	padding: 10px 20px;
+	border-radius: 8px;
+	color: white;
+	font-weight: 600;
+	transition: all 0.3s ease;
+	cursor: pointer;
+}
+
+#shareSongBtn {
+	border: 1px solid rgb(255, 255, 255);
+	transform: translateY(0);
+	transition: transform 0.3s ease;
+}
+
+#shareSongBtn:hover {
+	transform: scale(1.05);
 }
 
 .song-info a:hover {
