@@ -168,6 +168,16 @@ if (coupleSongBtn) {
 	coupleSongBtn.addEventListener('click', () => {
 		if (coupleSongPopupOverlay) {
 			coupleSongPopupOverlay.classList.remove('hidden')
+			
+			const currentPercent = parseInt(percentText.textContent.replace('%', '')) || 0
+			if (currentPercent > 0 && songPercentInput) {
+				songPercentInput.value = currentPercent
+				
+				// Automatically get song recommendation
+				setTimeout(() => {
+					if (getSongBtn) getSongBtn.click()
+				}, 100)
+			}
 		}
 	})
 }
