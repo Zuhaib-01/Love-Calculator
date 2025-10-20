@@ -2933,6 +2933,12 @@ body.dark-mode .feedback-list-section {
 		border: 1px solid rgba(255, 255, 255, 0.05);
 	}
 
+	/* This class is toggled by JS to show the menu */
+	.controls.active {
+		display: flex;
+	}
+
+
 	@keyframes slideDown {
 		from {
 			opacity: 0;
@@ -2950,11 +2956,6 @@ body.dark-mode .feedback-list-section {
 		padding: 0.75rem;
 		width: 100%;
 		justify-content: center;
-	}
-
-	/* This class is toggled by JS to show the menu */
-	.controls.active {
-		display: flex;
 	}
 
 	.top {

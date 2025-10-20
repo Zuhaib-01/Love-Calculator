@@ -106,7 +106,15 @@ const ctx = particleCanvas.getContext ? particleCanvas.getContext('2d') : null
 // Performance optimization: limit canvas size to reasonable dimensions
 const MAX_CANVAS_WIDTH = 1920
 const MAX_CANVAS_HEIGHT = 1080
-
+// Performance monitoring (development/debugging helper)
+let performanceMetrics = {
+    particleCount: 0,
+    lastFrameTime: 0,
+    averageFrameTime: 0,
+    frameTimeHistory: [],
+    droppedFrames: 0,
+    canvasResizeCount: 0
+};
 function resizeCanvas() {
 	const width = Math.min(window.innerWidth, MAX_CANVAS_WIDTH)
 	const height = Math.min(window.innerHeight, MAX_CANVAS_HEIGHT)
@@ -2034,16 +2042,6 @@ function resetAll() {
 }
 
 document.getElementById('resetAllBtn').addEventListener('click', resetAll);
-
-// Performance monitoring (development/debugging helper)
-let performanceMetrics = {
-    particleCount: 0,
-    lastFrameTime: 0,
-    averageFrameTime: 0,
-    frameTimeHistory: [],
-    droppedFrames: 0,
-    canvasResizeCount: 0
-};
 
 function updatePerformanceMetrics(frameTime) {
     performanceMetrics.lastFrameTime = frameTime;
