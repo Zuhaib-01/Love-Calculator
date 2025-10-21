@@ -3177,6 +3177,103 @@ body.dark-mode .feedback-list-section {
 }
 
 /* ===========================
+   Love Song Modal Styles
+   =========================== */
+.song-recommendation {
+	padding: 1.5rem;
+	border-radius: 12px;
+	background: linear-gradient(135deg, rgba(255, 122, 122, 0.1), rgba(255, 46, 99, 0.1));
+	border: 1px solid rgba(255, 122, 122, 0.2);
+	margin-top: 1rem;
+}
+
+.song-info h4 {
+	margin: 0 0 0.5rem 0;
+	font-size: 1.2rem;
+	color: var(--accent2);
+}
+
+.song-info p {
+	margin: 0.25rem 0;
+	color: var(--muted);
+}
+
+.song-buttons {
+	display: flex;
+	gap: 10px;
+	margin-top: 1rem;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.song-info a {
+	display: inline-block;
+	text-decoration: none;
+	background: linear-gradient(135deg, #ff4757, #ff3742);
+	border: none;
+	padding: 10px 20px;
+	border-radius: 8px;
+	color: white;
+	font-weight: 600;
+	transition: all 0.3s ease;
+	cursor: pointer;
+}
+
+#shareSongBtn {
+	border: 1px solid rgb(255, 255, 255);
+	transform: translateY(0);
+	transition: transform 0.3s ease;
+}
+
+#shareSongBtn:hover {
+	transform: scale(1.05);
+}
+
+.song-info a:hover {
+	background: linear-gradient(135deg, #ff3742, #ff2f3a);
+	transform: translateY(-2px);
+	box-shadow: 0 4px 12px rgba(255, 71, 87, 0.3);
+}
+
+#getSongBtn {
+	background: linear-gradient(135deg, #667eea, #764ba2);
+	border: none;
+	color: white;
+	font-weight: 600;
+	transition: all 0.3s ease;
+}
+
+#getSongBtn:hover {
+	background: linear-gradient(135deg, #764ba2, #667eea);
+	transform: translateY(-2px);
+	box-shadow: 0 4px 12px rgba(118, 75, 162, 0.3);
+}
+
+
+
+body.light-theme .song-recommendation {
+	background: linear-gradient(135deg, rgba(255, 122, 122, 0.05), rgba(255, 46, 99, 0.05));
+	border-color: rgba(255, 122, 122, 0.15);
+}
+
+body.light-theme .song-info h4 {
+	color: #ff2e63;
+}
+
+.input-error {
+	color: #ff4757;
+	font-size: 0.85rem;
+	margin-top: 0.5rem;
+	font-weight: 500;
+	animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+	from { opacity: 0; transform: translateY(-5px); }
+	to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===========================
    Light Theme - Share Section
    =========================== */
 body.light-theme .share-section {

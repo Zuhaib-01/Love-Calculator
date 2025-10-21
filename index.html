@@ -101,6 +101,7 @@
 						 <button type="button" id="resetAllBtn" class="primary">Reset All 🔄</button>
 						<a href="./Games/index.html" class="primary NG">Love Spinner ❤️</a>
 						<a href="./Letter/index.html" class="primary NG">Write a letter</a>
+						<button type="button" id="coupleSongBtn" class="primary NG">🎵 Love Song</button>
 					</div>
 
 					<div class="result-area" aria-live="polite">
@@ -373,6 +374,53 @@
 					<div class="feedback-actions">
 						<button type="button" id="copyShareLink" class="primary">Copy Link</button>
 						<button type="button" id="closeShareLink" class="outline">Close</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- Couple's Song Popup Modal -->
+	<div class="sharelink-popup-overlay hidden" id="coupleSongPopupOverlay">
+		<div class="feedback-popup" id="coupleSongPanel">
+			<div class="feedback-popup-header">
+				<h3>🎵 Love Song</h3>
+				<button class="close-popup" id="closeCoupleSongPopup" title="Close">✕</button>
+			</div>
+			<div class="feedback-popup-content">
+				<form id="coupleSongForm" class="feedback-form">
+					<label for="songPercentInput" class="shareLink-label">
+						Love Percentage (0-100)
+						<input type="number" id="songPercentInput" min="0" max="100" placeholder="Enter your love percentage" />
+						<div id="songPercentError" class="input-error hidden">Please enter a valid percentage between 0 and 100.</div>
+					</label>
+
+					<div id="songRecommendation" class="song-recommendation hidden">
+						<div class="song-info">
+							<h4 id="songTitle"></h4>
+							<p id="songArtist"></p>
+							<p id="songMood"></p>
+							<div class="song-video" style="margin: 1rem 0; border-radius: 8px; overflow: hidden; position: relative;">
+								<div id="songThumbnail" style="position: relative; cursor: pointer; border-radius: 8px; overflow: hidden;">
+									<img id="thumbnailImg" src="" alt="Song thumbnail" style="width: 100%; height: 200px; object-fit: cover; display: block;" />
+									<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0,0,0,0.7); border-radius: 50%; padding: 15px; color: white; font-size: 24px;">
+										<i class="fa-solid fa-play"></i>
+									</div>
+								</div>
+							</div>
+							<div class="song-buttons">
+								<a id="songYouTubeLink" href="#" target="_blank" class="primary">Listen on YouTube</a>
+								<button id="shareSongBtn" class="download-btn">
+									<i class="fa-solid fa-copy"></i>
+									<span>Copy Link</span>
+								</button>
+							</div>
+						</div>
+					</div>
+
+					<div class="feedback-actions">
+						<button type="button" id="getSongBtn" class="primary">Get Song Recommendation</button>
+						<button type="button" id="closeCoupleSong" class="outline">Close</button>
 					</div>
 				</form>
 			</div>
