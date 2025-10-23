@@ -101,6 +101,7 @@
 						 <button type="button" id="resetAllBtn" class="primary">Reset All 🔄</button>
 						<a href="./Games/index.html" class="primary NG">Love Spinner ❤️</a>
 						<a href="./Letter/index.html" class="primary NG">Write a letter</a>
+						<button type="button" id="coupleSongBtn" class="primary NG">🎵 Love Song</button>
 					</div>
 
 					<div class="result-area" aria-live="polite">
@@ -216,9 +217,9 @@
 						<i class="fa-brands fa-whatsapp"></i>
 						<span>WhatsApp</span>
 					</a>
-					<a href="#" id="shareTwitter" target="_blank" class="share-btn share-twitter" title="Share on Twitter">
+					<a href="#" id="shareTwitter" target="_blank" class="share-btn share-twitter" title="Share on X">
 						<i class="fa-brands fa-x-twitter"></i>
-						<span>Twitter</span>
+						<span>X</span>
 					</a>
 					<a href="#" id="shareFacebook" target="_blank" class="share-btn share-facebook" title="Share on Facebook">
 						<i class="fa-brands fa-facebook"></i>
@@ -228,16 +229,20 @@
 						<i class="fa-brands fa-instagram"></i>
 						<span>Instagram</span>
 					</a>
+					<a href="#" id="shareSnapchat" class="share-btn share-snapchat" title="Share on Snapchat">
+						<i class="fa-brands fa-snapchat"></i>
+						<span>Snapchat</span>
+					</a>
 				</div>
 				
 				<div class="download-options">
 					<h3 class="download-title">💝 Download & Copy</h3>
 					<div class="download-buttons">
-						<button id="generateLoveCard" class="download-btn">
+						<button id="generateLoveCard" class="love-btn">
 							<i class="fa-solid fa-heart"></i>
 							<span>Generate Love Card</span>
 						</button>
-						<button id="copyLinkBtn" class="download-btn" title="Copy link">
+						<button id="copyLinkBtn" class="copy-btn" title="Copy link">
 							<i class="fa-solid fa-copy"></i>
 							<span>Copy Link</span>
 						</button>
@@ -375,6 +380,53 @@
 		</div>
 	</div>
 
+	<!-- Couple's Song Popup Modal -->
+	<div class="sharelink-popup-overlay hidden" id="coupleSongPopupOverlay">
+		<div class="feedback-popup" id="coupleSongPanel">
+			<div class="feedback-popup-header">
+				<h3>🎵 Love Song</h3>
+				<button class="close-popup" id="closeCoupleSongPopup" title="Close">✕</button>
+			</div>
+			<div class="feedback-popup-content">
+				<form id="coupleSongForm" class="feedback-form">
+					<label for="songPercentInput" class="shareLink-label">
+						Love Percentage (0-100)
+						<input type="number" id="songPercentInput" min="0" max="100" placeholder="Enter your love percentage" />
+						<div id="songPercentError" class="input-error hidden">Please enter a valid percentage between 0 and 100.</div>
+					</label>
+
+					<div id="songRecommendation" class="song-recommendation hidden">
+						<div class="song-info">
+							<h4 id="songTitle"></h4>
+							<p id="songArtist"></p>
+							<p id="songMood"></p>
+							<div class="song-video" style="margin: 1rem 0; border-radius: 8px; overflow: hidden; position: relative;">
+								<div id="songThumbnail" style="position: relative; cursor: pointer; border-radius: 8px; overflow: hidden;">
+									<img id="thumbnailImg" src="" alt="Song thumbnail" style="width: 100%; height: 200px; object-fit: cover; display: block;" />
+									<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0,0,0,0.7); border-radius: 50%; padding: 15px; color: white; font-size: 24px;">
+										<i class="fa-solid fa-play"></i>
+									</div>
+								</div>
+							</div>
+							<div class="song-buttons">
+								<a id="songYouTubeLink" href="#" target="_blank" class="primary">Listen on YouTube</a>
+								<button id="shareSongBtn" class="download-btn">
+									<i class="fa-solid fa-copy"></i>
+									<span>Copy Link</span>
+								</button>
+							</div>
+						</div>
+					</div>
+
+					<div class="feedback-actions">
+						<button type="button" id="getSongBtn" class="primary">Get Song Recommendation</button>
+						<button type="button" id="closeCoupleSong" class="outline">Close</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
 	<footer class="footer">
   <div class="footer-content">
     <p>Made with ❤️ • Numerology logic (Pythagorean) • No data leaves your browser</p>
@@ -391,6 +443,19 @@
     <p class="footer-copy">© 2025 All rights reserved.</p>
   </div>
 </footer>
+
+
+		<!-- Footer -->
+		<div id="footer-placeholder"></div>
+
+		<script>
+			// Load footer
+			fetch('components/footer.html')
+				.then(response => response.text())
+				.then(html => {
+					document.getElementById('footer-placeholder').innerHTML = html;
+				});
+		</script>
 
 		<!-- Contact Section (target for footer Contact button) -->
 		<section id="contact" class="contact-section">
@@ -418,6 +483,7 @@
 				</form>
 			</div>
 		</section>
+
 
 		<script src="script.js"></script>
 	</body>
